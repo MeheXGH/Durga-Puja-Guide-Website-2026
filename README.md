@@ -1,37 +1,165 @@
-# Durga Puja Pandal Hopping Guide 2026 — PWA
+<div align="center">
 
-This is a GitHub Pages-ready version of the supplied single-file website. It preserves the existing pandal, food, transit and auto-stand data and adds install metadata, app icons, a service worker, a mobile layout patch and an install button.
+<img src="./icons/durga-maa-logo.png" alt="Durga Maa — Durga Puja Guide" width="110" />
 
-## Files
+# 🪔 Durga Puja Pandal Hopping Guide 2026
 
-- `index.html` — existing app UI, data, CSS and JavaScript, with PWA/mobile additions
-- `manifest.webmanifest` — install name, icons, start URL and standalone display mode
-- `sw.js` — caches the app shell and supports an offline fallback for the HTML page
-- `icons/` — app icons for Android, maskable launchers and iOS home screen
+**Explore Kolkata's Durga Puja pandals, discover local food, and plan your route—all in one interactive guide.**
 
-## Deploy to the existing GitHub Pages project
+[![Live Website](https://img.shields.io/badge/Live_Website-Visit_Guide-ff8400?style=for-the-badge)](https://mehexgh.github.io/Durga-Puja-Guide-Website-2026/)
+[![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-222?style=for-the-badge&logo=github)](https://github.com/MeheXGH/Durga-Puja-Guide-Website-2026)
+[![PWA](https://img.shields.io/badge/Progressive_Web_App-PWA-2563eb?style=for-the-badge)](https://mehexgh.github.io/Durga-Puja-Guide-Website-2026/)
 
-1. Download and unzip this project.
-2. Open your repository: `https://github.com/mehexgh/Durga-Puja-Guide-Website-2026/`.
-3. Back up the current repository or create a branch before replacing files.
-4. Upload/commit `index.html`, `manifest.webmanifest`, `sw.js`, and the complete `icons` folder to the repository root (same level as the current `index.html`).
-5. Commit to the branch configured in **Settings → Pages**.
-6. Wait for GitHub Pages to finish deploying.
-7. Open the live website over HTTPS. In Chrome DevTools → Application, verify Manifest and Service Workers. In Network, confirm manifest, sw.js and icon files return 200.
-8. On Android Chrome, open the browser menu and choose Install app / Add to Home screen. The in-page Install button appears when Chrome fires `beforeinstallprompt`. On iPhone, use Safari → Share → Add to Home Screen; the in-page button explains the iOS steps.
+**[🌐 Open Live Guide](https://mehexgh.github.io/Durga-Puja-Guide-Website-2026/)** · **[📂 Source Code](https://github.com/MeheXGH/Durga-Puja-Guide-Website-2026)**
 
-## Important notes
+</div>
 
-- This site uses relative paths (`./`) so it works at the GitHub Pages project URL, not only at the domain root.
-- The service worker caches the local app shell and icons. It does **not** cache Leaflet map tiles or remote CDN files, so the interactive map may need an internet connection. Do not promise offline maps until tiles and libraries are deliberately designed and tested for offline use.
-- If the old app stays cached after a deployment, change `CACHE_NAME` in `sw.js` (for example, `puja-guide-shell-v2`) and reload the site.
-- Test on actual Android and iPhone devices before festival day. Browser installation behavior varies by browser and platform.
-- Keep a backup of the original `index.html` before replacing it.
+---
 
-## Existing features retained
+## 📖 Overview
 
-Interactive Leaflet map, 18 curated pandals, food hubs, transit/auto stops, filters, visited checklist using localStorage, GPS location, custom spot form and Google Maps navigation links.
+**Durga Puja Pandal Hopping Guide 2026** is a mobile-friendly, map-based web application designed to help visitors explore **18 curated Durga Puja pandals in South Kolkata**. It combines pandal discovery, a visit checklist, local food recommendations, and practical transport information in one place.
 
+The guide follows a suggested west-to-east pandal-hopping corridor and includes rail, metro, and auto-stand reference points to help visitors orient themselves during the festival.
 
-## Approved Durga Maa logo
-The approved generated artwork is used unchanged for the app's header logo. Resized copies are used for PWA, Apple, and favicon sizes. The full artwork is stored at `icons/durga-maa-logo.png`.
+## ✨ Features
+
+- **🗺️ Interactive map:** Explore pandals, food hubs, train and metro stations, and auto stands with interactive markers.
+- **🏮 18 curated pandals:** Browse the South Kolkata pandal-hopping checklist and suggested route.
+- **✅ Visited tracker:** Mark pandals as visited and monitor your progress. Progress is saved locally in your browser.
+- **🔎 Search and filters:** Find places and filter the map by pandals, food hubs, transit stops, and auto stands.
+- **🍲 Food discoveries:** Find well-known food spots along the pandal-hopping corridor.
+- **🚇 Transit guide:** See practical train, metro, and auto guidance, including a suggested arrival and return route.
+- **📍 Location and directions:** Use supported browser location features and Google Maps links to help navigate.
+- **➕ Custom spots:** Add personal spots in the guide.
+- **📱 Responsive design:** Designed for desktop and mobile browsers.
+- **📲 Installable PWA:** Includes a web app manifest, icons, and a service worker for app-shell caching.
+
+## 🚀 Live Demo
+
+Visit the published guide:
+
+**https://mehexgh.github.io/Durga-Puja-Guide-Website-2026/**
+
+No account is required to browse the guide.
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+| --- | --- |
+| HTML5 | Application structure and content |
+| CSS3 | Styling and responsive layout |
+| JavaScript | Map interactions, filters, checklist, and app behavior |
+| Leaflet.js | Interactive map rendering |
+| Browser localStorage | Saving checklist progress locally |
+| Web App Manifest | PWA installation metadata |
+| Service Worker | App-shell caching and offline fallback for local files |
+| GitHub Pages | Static website hosting |
+
+## 📁 Project Structure
+
+```text
+Durga-Puja-Guide-Website-2026/
+├── index.html              # Main application: markup, styles, and scripts
+├── manifest.webmanifest    # PWA metadata and icon definitions
+├── sw.js                   # Service worker and app-shell caching
+├── icons/                  # Logo, favicons, and installable app icons
+│   ├── durga-maa-logo.png
+│   ├── favicon.ico
+│   ├── favicon-16.png
+│   ├── favicon-32.png
+│   ├── apple-touch-icon.png
+│   ├── icon-192.png
+│   ├── icon-512.png
+│   └── icon-maskable-512.png
+└── README.md
+```
+
+## 💻 Run Locally
+
+You don't need a framework build step or package installation to get started.
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/MeheXGH/Durga-Puja-Guide-Website-2026.git
+   ```
+
+2. Enter the project directory:
+
+   ```bash
+   cd Durga-Puja-Guide-Website-2026
+   ```
+
+3. Open the folder in VS Code:
+
+   ```bash
+   code .
+   ```
+
+4. Serve the site from a local HTTP server (recommended for testing the PWA):
+
+   ```bash
+   python -m http.server 5500
+   ```
+
+5. Visit **http://localhost:5500/** in your browser.
+
+> Opening `index.html` directly may display the page, but service workers and some browser features should be tested on `localhost` or HTTPS.
+
+## 📲 Install as an App
+
+The project includes PWA metadata and install icons.
+
+- **Android:** Open the live website in a compatible browser and choose **Install app** or **Add to Home screen**, if offered.
+- **iPhone/iPad:** Open the website in Safari, tap **Share**, then select **Add to Home Screen**.
+- **Desktop:** Compatible browsers may offer an install option in the address bar or browser menu.
+
+Installation options vary by browser and device.
+
+### Offline Support
+
+The service worker caches the local application shell and icons. **Map tiles and external CDN resources are not guaranteed to work offline**, so an internet connection may still be needed for the interactive map and external navigation.
+
+## 🌍 Deployment
+
+This site is deployed as a static project using **GitHub Pages**.
+
+To publish updates:
+
+```bash
+git add .
+git commit -m "Update Durga Puja guide"
+git push
+```
+
+GitHub Pages will publish changes from the branch and directory configured under **Repository → Settings → Pages**. Deployment may take a short time.
+
+If you don't see an updated version immediately, refresh the page and consider whether the service worker is serving cached content.
+
+## 🧭 Travel and Map Disclaimer
+
+This guide is intended for **festival exploration and general orientation**, not as an official navigation or transit service.
+
+- Transit route lines are **schematic overlays**, not surveyed railway or metro track geometry.
+- Verify current metro and train operations, station entrances, and local transport availability before travelling.
+- Festival traffic, diversions, road closures, queue times, and pandal access arrangements can change.
+- Use live navigation and official transport updates when making travel decisions.
+
+## 🤝 Contributing
+
+Suggestions, bug reports, and improvements are welcome. To contribute, open an [issue](https://github.com/MeheXGH/Durga-Puja-Guide-Website-2026/issues) or submit a pull request.
+
+## 👨‍💻 Maintainer
+
+Developed and maintained by **[MeheXGH](https://github.com/MeheXGH)**.
+
+---
+
+<div align="center">
+
+**Made for Durga Puja 2026 in Kolkata.** 🪔
+
+[Explore the Guide](https://mehexgh.github.io/Durga-Puja-Guide-Website-2026/) · [Back to Top](#-durga-puja-pandal-hopping-guide-2026)
+
+</div>
