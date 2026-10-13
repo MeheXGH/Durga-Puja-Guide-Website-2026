@@ -1,0 +1,3326 @@
+<!doctype html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Durga Puja Pandal Hopping Guide 2026</title>
+
+
+
+    <!-- Typography & Icons -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+
+      rel="stylesheet"
+
+    />
+
+    <link
+
+      rel="stylesheet"
+
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+
+    />
+
+
+
+    <!-- Leaflet CSS for 100% Free Maps -->
+
+    <link
+
+      rel="stylesheet"
+
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+
+    />
+
+
+
+    <style>
+
+      :root {
+
+        --bg-crimson-deep: #2d0208;
+
+        --bg-dark: #120a0d;
+
+        --card-bg: rgba(28, 16, 21, 0.88);
+
+        --card-bg-solid: #1e1217;
+
+        --card-border: rgba(217, 119, 6, 0.28);
+
+        --maroon-primary: #881337;
+
+        --maroon-glow: #be123c;
+
+        --gold-primary: #f59e0b;
+
+        --gold-bright: #fbbf24;
+
+        --gold-soft: #fef3c7;
+
+        --accent-emerald: #10b981;
+
+        --accent-cyan: #06b6d4;
+
+        --text-main: #f8fafc;
+
+        --text-muted: #94a3b8;
+
+        --nav-height: 68px;
+
+      }
+
+
+
+      * {
+
+        box-sizing: border-box;
+
+        margin: 0;
+
+        padding: 0;
+
+        -webkit-tap-highlight-color: transparent;
+
+      }
+
+
+
+      body {
+
+        font-family: "Plus Jakarta Sans", sans-serif;
+
+        background-color: var(--bg-dark);
+
+        color: var(--text-main);
+
+        height: 100vh;
+
+        width: 100vw;
+
+        overflow: hidden;
+
+        display: flex;
+
+        flex-direction: column;
+
+      }
+
+
+
+      .font-cinzel {
+
+        font-family: "Cinzel", serif;
+
+      }
+
+
+
+      /* HEADER WITH FESTIVE ROYAL CRIMSON GLOW */
+
+      header {
+
+        background: linear-gradient(
+
+          135deg,
+
+          #3d050f 0%,
+
+          #1e0509 50%,
+
+          #2f040d 100%
+
+        );
+
+        padding: 12px 16px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        border-bottom: 1.5px solid var(--gold-primary);
+
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+
+        z-index: 1000;
+
+        flex-shrink: 0;
+
+      }
+
+
+
+      .brand-title {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+      }
+
+
+
+      .brand-icon {
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff7e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .brand-icon img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+
+
+      .header-actions {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+      }
+
+
+
+      .stat-pill {
+
+        background: rgba(0, 0, 0, 0.45);
+
+        border: 1px solid var(--card-border);
+
+        padding: 4px 10px;
+
+        border-radius: 20px;
+
+        text-align: right;
+
+      }
+
+
+
+      .stat-pill .count {
+
+        color: var(--gold-bright);
+
+        font-weight: 700;
+
+        font-size: 0.8rem;
+
+      }
+
+
+
+      .stat-pill .pct {
+
+        color: var(--text-muted);
+
+        font-size: 0.65rem;
+
+      }
+
+
+
+      .btn-add-spot {
+
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+
+        color: #1a080c;
+
+        border: none;
+
+        font-weight: 700;
+
+        font-size: 0.75rem;
+
+        padding: 8px 12px;
+
+        border-radius: 20px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+        cursor: pointer;
+
+        box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+
+      }
+
+
+
+      /* VIEW PAGES */
+
+      .view-container {
+
+        flex: 1;
+
+        position: relative;
+
+        overflow: hidden;
+
+        width: 100%;
+
+      }
+
+
+
+      .view-page {
+
+        position: absolute;
+
+        inset: 0;
+
+        display: none;
+
+        flex-direction: column;
+
+        background: var(--bg-dark);
+
+      }
+
+
+
+      .view-page.active {
+
+        display: flex;
+
+      }
+
+
+
+      #map {
+
+        width: 100%;
+
+        height: 100%;
+
+        background: #dfdeda;
+
+      }
+
+
+
+      /* FLOATING MAP CONTROLS */
+
+      .map-controls {
+
+        position: absolute;
+
+        top: 14px;
+
+        right: 14px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        z-index: 1000;
+
+      }
+
+
+
+      .fab {
+
+        width: 44px;
+
+        height: 44px;
+
+        border-radius: 12px;
+
+        background: var(--card-bg-solid);
+
+        border: 1px solid var(--card-border);
+
+        color: var(--gold-bright);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 1rem;
+
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+
+        cursor: pointer;
+
+        backdrop-filter: blur(8px);
+
+      }
+
+
+
+      .fab:active {
+
+        transform: scale(0.92);
+
+      }
+
+
+
+      /* MAP FILTER PILL BAR */
+
+      .map-filter-overlay {
+
+        position: absolute;
+
+        top: 14px;
+
+        left: 14px;
+
+        right: 70px;
+
+        z-index: 1000;
+
+        display: flex;
+
+        gap: 6px;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+
+        padding-bottom: 4px;
+
+      }
+
+      .map-filter-overlay::-webkit-scrollbar {
+
+        display: none;
+
+      }
+
+
+
+      .map-chip {
+
+        background: rgba(20, 10, 14, 0.9);
+
+        border: 1px solid var(--card-border);
+
+        color: var(--text-muted);
+
+        padding: 6px 12px;
+
+        border-radius: 20px;
+
+        font-size: 0.72rem;
+
+        white-space: nowrap;
+
+        cursor: pointer;
+
+        backdrop-filter: blur(6px);
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+        font-weight: 600;
+
+      }
+
+
+
+      .map-chip.active {
+
+        background: var(--maroon-primary);
+
+        border-color: var(--gold-bright);
+
+        color: #fff;
+
+      }
+
+
+
+      /* CUSTOM MARKER ICONS */
+
+      .marker-pandal {
+
+        background: linear-gradient(135deg, #be123c, #881337);
+
+        color: #fff;
+
+        border: 2px solid var(--gold-bright);
+
+        border-radius: 50%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-weight: 800;
+
+        font-size: 11px;
+
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+
+        width: 28px;
+
+        height: 28px;
+
+      }
+
+      .marker-pandal.visited {
+
+        background: linear-gradient(135deg, #10b981, #047857);
+
+        border-color: #a7f3d0;
+
+      }
+
+      /* Floating labels: keep names horizontal and readable; hide them at overview zoom. */
+      .leaflet-tooltip.map-name-label {
+        display: inline-block;
+        width: max-content !important;
+        max-width: none !important;
+        white-space: nowrap !important;
+        word-break: keep-all !important;
+        overflow-wrap: normal !important;
+        writing-mode: horizontal-tb !important;
+        transform: none;
+        background: rgba(28, 14, 19, .97);
+        color: #fff7ed;
+        border: 1px solid #fbbf24;
+        border-radius: 7px;
+        box-shadow: 0 3px 10px rgba(0,0,0,.35);
+        padding: 4px 7px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 1.2;
+        pointer-events: none;
+      }
+      .leaflet-tooltip.map-name-label:before { border-top-color: #fbbf24; }
+      #map:not(.map-labels-visible) .leaflet-tooltip.map-name-label { display: none !important; }
+      #map.map-labels-visible .leaflet-tooltip.map-name-label { display: inline-block !important; }
+      .leaflet-tooltip.map-name-label.label-pandal { border-color:#fbbf24; }
+      .leaflet-tooltip.map-name-label.label-food { border-color:#fb923c; background:rgba(91,43,8,.97); }
+      .leaflet-tooltip.map-name-label.label-transit { border-color:#38bdf8; background:rgba(7,48,71,.97); }
+      .leaflet-tooltip.map-name-label.label-auto { border-color:#34d399; background:rgba(5,64,48,.97); }
+      .leaflet-tooltip.map-name-label.label-landmark { border-color:#c4b5fd; background:rgba(46,30,78,.97); }
+      .leaflet-tooltip.map-line-label { font-size:11px; font-weight:800; white-space:nowrap; }
+      .leaflet-tooltip.metro-line-label { border:2px solid #2563eb; color:#1d4ed8; }
+      .leaflet-tooltip.rail-line-label { border:2px dashed #7c3aed; color:#6d28d9; }
+      .search-field {
+        width: 100%; padding: 12px 13px; border-radius: 10px;
+        background: rgba(255,255,255,.06); color: var(--text-main);
+        border: 1px solid var(--gold-primary); font: inherit; font-size: .9rem;
+        outline: none;
+      }
+      .search-results { display: grid; gap: 8px; margin-top: 12px; max-height: min(48dvh, 380px); overflow-y: auto; }
+      .search-result { width: 100%; text-align: left; border: 1px solid var(--card-border);
+        border-radius: 10px; padding: 11px 12px; background: rgba(255,255,255,.04);
+        color: var(--text-main); cursor: pointer; display: flex; gap: 10px; align-items: center; }
+      .search-result:active { background: rgba(245,158,11,.14); }
+      .search-result-number { flex: 0 0 28px; width: 28px; height: 28px; border-radius: 50%;
+        display: grid; place-items: center; background: #881337; border: 1px solid #fbbf24; font-weight: 800; font-size: .75rem; }
+      .search-result small { display:block; color: var(--text-muted); margin-top: 2px; font-size: .72rem; }
+
+
+
+      .marker-food {
+
+        background: linear-gradient(135deg, #d97706, #b45309);
+
+        color: #fff;
+
+        border: 2px solid #fde68a;
+
+        border-radius: 50%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 12px;
+
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+
+        width: 28px;
+
+        height: 28px;
+
+      }
+
+
+
+      .marker-transit {
+
+        background: linear-gradient(135deg, #0284c7, #0369a1);
+
+        color: #fff;
+
+        border: 2px solid #bae6fd;
+
+        border-radius: 50%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 12px;
+
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+
+        width: 28px;
+
+        height: 28px;
+
+      }
+
+
+
+      .marker-auto {
+
+        background: linear-gradient(135deg, #059669, #065f46);
+
+        color: #fff;
+
+        border: 2px solid #6ee7b7;
+
+        border-radius: 50%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 12px;
+
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+
+        width: 28px;
+
+        height: 28px;
+
+      }
+
+
+
+      /* SCROLLABLE VIEW PAGES */
+
+      .scroll-view {
+
+        flex: 1;
+
+        overflow-y: auto;
+
+        padding: 16px;
+
+        padding-bottom: 95px;
+
+      }
+
+
+
+      .section-title {
+
+        font-size: 1.05rem;
+
+        color: var(--gold-bright);
+
+        margin-bottom: 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+      }
+
+
+
+      /* CARD DESIGN */
+
+      .item-card {
+
+        background: var(--card-bg-solid);
+
+        border: 1px solid var(--card-border);
+
+        border-radius: 14px;
+
+        padding: 14px;
+
+        margin-bottom: 12px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        transition: all 0.2s ease;
+
+      }
+
+
+
+      .item-card.visited {
+
+        border-color: rgba(16, 185, 129, 0.4);
+
+        background: rgba(16, 185, 129, 0.06);
+
+      }
+
+
+
+      .card-top {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 12px;
+
+      }
+
+
+
+      .badge-icon {
+
+        width: 32px;
+
+        height: 32px;
+
+        border-radius: 50%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-weight: 700;
+
+        font-size: 0.85rem;
+
+        flex-shrink: 0;
+
+      }
+
+
+
+      .card-details {
+
+        flex: 1;
+
+      }
+
+
+
+      .card-details h3 {
+
+        font-size: 0.95rem;
+
+        font-weight: 700;
+
+        color: var(--text-main);
+
+        line-height: 1.25;
+
+      }
+
+
+
+      .card-details p {
+
+        font-size: 0.78rem;
+
+        color: var(--text-muted);
+
+        margin-top: 3px;
+
+        line-height: 1.35;
+
+      }
+
+
+
+      .card-meta {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin-top: 4px;
+
+        font-size: 0.72rem;
+
+      }
+
+
+
+      .meta-tag {
+
+        padding: 2px 8px;
+
+        border-radius: 12px;
+
+        font-weight: 600;
+
+      }
+
+
+
+      .card-actions {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+        padding-top: 10px;
+
+        margin-top: 4px;
+
+      }
+
+
+
+      .btn-action {
+
+        background: rgba(255, 255, 255, 0.08);
+
+        border: 1px solid var(--card-border);
+
+        color: var(--text-main);
+
+        padding: 6px 12px;
+
+        border-radius: 8px;
+
+        font-size: 0.75rem;
+
+        text-decoration: none;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+        cursor: pointer;
+
+      }
+
+
+
+      .btn-action.primary {
+
+        background: linear-gradient(
+
+          135deg,
+
+          var(--maroon-primary),
+
+          var(--bg-crimson-deep)
+
+        );
+
+        color: var(--gold-soft);
+
+        border-color: var(--gold-primary);
+
+        font-weight: 600;
+
+      }
+
+
+
+      /* TIMELINE STYLES */
+
+      .timeline-wrap {
+
+        position: relative;
+
+        padding-left: 28px;
+
+        margin-bottom: 18px;
+
+      }
+
+      .timeline-wrap::before {
+
+        content: "";
+
+        position: absolute;
+
+        left: 7px;
+
+        top: 12px;
+
+        bottom: -18px;
+
+        width: 2px;
+
+        background: var(--card-border);
+
+      }
+
+      .timeline-wrap:last-child::before {
+
+        display: none;
+
+      }
+
+      .timeline-bullet {
+
+        position: absolute;
+
+        left: 0;
+
+        top: 5px;
+
+        width: 16px;
+
+        height: 16px;
+
+        border-radius: 50%;
+
+        background: var(--gold-bright);
+
+        border: 3px solid var(--bg-dark);
+
+      }
+
+
+
+      /* BOTTOM NAVIGATION */
+
+      nav.bottom-nav {
+
+        height: var(--nav-height);
+
+        background: rgba(22, 10, 14, 0.96);
+
+        backdrop-filter: blur(12px);
+
+        border-top: 1px solid var(--card-border);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-around;
+
+        position: relative;
+
+        z-index: 1000;
+
+        flex-shrink: 0;
+
+      }
+
+
+
+      .nav-btn {
+
+        background: transparent;
+
+        border: none;
+
+        color: var(--text-muted);
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 3px;
+
+        font-size: 0.7rem;
+
+        font-weight: 500;
+
+        cursor: pointer;
+
+        flex: 1;
+
+        padding: 6px 0;
+
+        transition: color 0.15s ease;
+
+      }
+
+
+
+      .nav-btn i {
+
+        font-size: 1.25rem;
+
+      }
+
+
+
+      .nav-btn.active {
+
+        color: var(--gold-bright);
+
+        font-weight: 700;
+
+      }
+
+
+
+      /* ADD SPOT MODAL */
+
+      .modal-overlay {
+
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(0, 0, 0, 0.78);
+
+        display: none;
+
+        align-items: center;
+
+        justify-content: center;
+
+        z-index: 2000;
+
+        padding: 16px;
+
+      }
+
+
+
+      .modal-overlay.open {
+
+        display: flex;
+
+      }
+
+
+
+      .modal-card {
+
+        background: #1c0e13;
+
+        border: 1px solid var(--gold-primary);
+
+        border-radius: 16px;
+
+        width: 100%;
+
+        max-width: 420px;
+
+        padding: 20px;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+
+      }
+
+
+
+      .form-group {
+
+        margin-bottom: 12px;
+
+      }
+
+
+
+      .form-group label {
+
+        display: block;
+
+        font-size: 0.76rem;
+
+        color: var(--text-muted);
+
+        margin-bottom: 4px;
+
+        font-weight: 600;
+
+      }
+
+
+
+      .form-group input,
+
+      .form-group select {
+
+        width: 100%;
+
+        padding: 10px;
+
+        background: rgba(255, 255, 255, 0.05);
+
+        border: 1px solid var(--card-border);
+
+        border-radius: 8px;
+
+        color: var(--text-main);
+
+        font-family: inherit;
+
+        font-size: 0.85rem;
+
+      }
+
+    
+      #install-app[hidden] { display: none !important; }
+      /* Mobile-first refinements */
+      html { min-height: 100%; background: var(--bg-dark); }
+      body { width: 100%; height: 100vh; height: 100dvh; min-height: 0; overflow: hidden; }
+      .view-container { min-height: 0; }
+      .view-page { min-height: 0; }
+      .scroll-view { min-height: 0; overscroll-behavior-y: contain; -webkit-overflow-scrolling: touch; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+      nav.bottom-nav { height: auto; min-height: 64px; padding: 5px 4px calc(5px + env(safe-area-inset-bottom)); }
+      .nav-btn { min-width: 0; min-height: 48px; padding: 7px 2px; }
+      .nav-btn span { font-size: clamp(0.62rem, 2.6vw, 0.7rem); text-align: center; }
+      button, a { touch-action: manipulation; }
+      input, select, textarea { font-size: 16px; }
+      .modal-overlay { overflow-y: auto; padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom)); }
+      .modal-card { max-height: calc(100dvh - 32px); overflow-y: auto; }
+      #map { min-height: 0; }
+      .leaflet-control-zoom { margin-bottom: 14px !important; margin-right: 10px !important; }
+      .map-filter-overlay { max-width: calc(100vw - 82px); }
+      .map-chip { min-height: 36px; }
+      .fab { width: 42px; height: 42px; }
+      .btn-action { min-height: 36px; }
+      @media (max-width: 420px) {
+        header { padding: 9px 10px; gap: 6px; }
+        .brand-title { gap: 7px; min-width: 0; }
+        .brand-icon { width: 32px; height: 32px; flex: 0 0 32px; }
+        .brand-title h1 { font-size: clamp(.72rem, 3.4vw, .95rem) !important; letter-spacing: -.02em; }
+        .brand-title p { font-size: .58rem !important; }
+        .header-actions { gap: 5px; }
+        .stat-pill { padding: 4px 6px; }
+        .stat-pill .count { font-size: .7rem; }
+        .stat-pill .pct { font-size: .57rem; }
+        .btn-add-spot { padding: 8px 9px; font-size: .7rem; }
+        .scroll-view { padding-left: 12px; padding-right: 12px; }
+        .card-actions { gap: 8px; flex-wrap: wrap; }
+        .card-actions > * { max-width: 100%; }
+      }
+      @media (max-width: 350px) {
+        .brand-title p { display: none; }
+        .stat-pill .pct { display: none; }
+        .nav-btn i { font-size: 1.1rem; }
+      }
+      .leaflet-tooltip.map-name-label {
+        white-space: normal;
+        max-width: min(210px, 55vw);
+        overflow-wrap: anywhere;
+      }
+      .leaflet-popup-content { max-width: min(260px, 72vw); }
+      @media (max-width: 600px) {
+        .map-controls { top: 60px; right: 10px; gap: 7px; }
+        .map-filter-overlay { top: 10px; left: 10px; right: 60px; }
+        .fab { width: 40px; height: 40px; border-radius: 11px; }
+        .leaflet-control-zoom a { width: 34px !important; height: 34px !important; line-height: 34px !important; }
+        .modal-card { padding: 16px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      }
+
+    </style>
+
+  
+    <meta name="theme-color" content="#2d0208" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Puja Guide" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+    <link rel="icon" href="./icons/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+
+  </head>
+
+  <body>
+
+    <!-- FESTIVE ROYAL HEADER -->
+
+    <header>
+
+      <div class="brand-title">
+
+        <div class="brand-icon">
+          <img src="./icons/durga-maa-logo.png" alt="Durga Maa logo" />
+        </div>
+
+        <div>
+
+          <h1
+
+            class="font-cinzel text-sm sm:text-base font-bold tracking-wide text-amber-200"
+
+            style="
+
+              color: var(--gold-bright);
+
+              font-size: 1.05rem;
+
+              line-height: 1.1;
+
+            "
+
+          >
+
+            DURGA PUJA GUIDE 2026
+
+          </h1>
+
+          <p
+
+            style="
+
+              font-size: 0.68rem;
+
+              color: var(--gold-soft);
+
+              font-weight: 500;
+
+            "
+
+          >
+
+            South Kolkata Pandal Hopping Route
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="header-actions">
+          <button class="btn-add-spot" id="install-app" type="button" hidden aria-label="Install Puja Guide"><i class="fa-solid fa-download"></i> Install</button>
+
+        <div class="stat-pill">
+
+          <div class="count" id="header-counter">0 / 18</div>
+
+          <div class="pct" id="header-pct">0% Visited</div>
+
+        </div>
+
+        <button class="btn-add-spot" type="button" onclick="openSearchModal()" aria-label="Search pandals and places">
+
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+
+        </button>
+
+      </div>
+
+    </header>
+
+
+
+    <div class="view-container">
+
+      <!-- PAGE 1: INTERACTIVE MAP -->
+
+      <div id="page-map" class="view-page active">
+
+        <div id="map"></div>
+
+
+
+        <!-- Quick Map Category Filter Pills -->
+
+        <div class="map-filter-overlay">
+
+          <button class="map-chip active" onclick="setMapFilter('all', this)">
+
+            <i class="fa-solid fa-layer-group"></i> All Spots
+
+          </button>
+
+          <button class="map-chip" onclick="setMapFilter('pandal', this)">
+
+            <i class="fa-solid fa-place-of-worship"></i> Pandals (18)
+
+          </button>
+
+          <button class="map-chip" onclick="setMapFilter('food', this)">
+
+            <i class="fa-solid fa-utensils"></i> Food Hubs
+
+          </button>
+
+          <button class="map-chip" onclick="setMapFilter('transit', this)">
+
+            <i class="fa-solid fa-train"></i> Train & Metro
+
+          </button>
+
+          <button class="map-chip" onclick="setMapFilter('auto', this)">
+
+            <i class="fa-solid fa-taxi"></i> Auto Stands
+
+          </button>
+
+        </div>
+
+
+
+        <!-- Floating Controls -->
+
+        <div class="map-controls">
+
+          <button class="fab" onclick="locateUser()" title="GPS My Location">
+
+            <i class="fa-solid fa-crosshairs"></i>
+
+          </button>
+
+          <button class="fab" onclick="fitRoute()" title="Recenter Route">
+
+            <i class="fa-solid fa-route"></i>
+
+          </button>
+
+          <button
+
+            class="fab"
+
+            onclick="toggleMapTiles()"
+
+            title="Toggle Map Style"
+
+          >
+
+            <i class="fa-solid fa-map"></i>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- PAGE 2: PANDALS CHECKLIST -->
+
+      <div id="page-checklist" class="view-page">
+
+        <div class="scroll-view">
+
+          <h2 class="section-title">
+
+            <i class="fa-solid fa-list-check"></i>
+
+            <span>Pandal Checklist (West to East)</span>
+
+          </h2>
+
+          <div id="checklist-items"></div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- PAGE 3: FOOD & REST STOPS -->
+
+      <div id="page-food" class="view-page">
+
+        <div class="scroll-view">
+
+          <h2 class="section-title">
+
+            <i class="fa-solid fa-utensils"></i>
+
+            <span>Legendary Puja Food Along Route</span>
+
+          </h2>
+
+          <p
+
+            style="
+
+              font-size: 0.78rem;
+
+              color: var(--text-muted);
+
+              margin-bottom: 14px;
+
+            "
+
+          >
+
+            Hand-picked Kolkata culinary landmarks right beside your hopping
+
+            corridor.
+
+          </p>
+
+          <div id="food-items"></div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- PAGE 4: TRANSIT & AUTO STOPS -->
+
+      <div id="page-transit" class="view-page">
+
+        <div class="scroll-view">
+
+          <h2 class="section-title">
+
+            <i class="fa-solid fa-train-subway"></i>
+
+            <span>Complete Transit & Road Guide</span>
+
+          </h2>
+          <p style="font-size:.78rem;color:var(--text-muted);line-height:1.5;margin:0 0 14px;">
+            Map lines are orientation overlays, not surveyed track geometry. Confirm live metro/rail service, station entrances, platform and Puja diversions before travelling.
+          </p>
+
+          <!-- Step-by-step roadmap from Barrackpore/Teleni Para -->
+
+          <div class="timeline-wrap">
+
+            <div class="timeline-bullet"></div>
+
+            <div class="item-card">
+
+              <h4 style="color: var(--gold-bright); font-size: 0.9rem">
+
+                1. Train to Dum Dum Jn
+
+              </h4>
+
+              <p>
+
+                Board suburban local train from your station directly into
+
+                <strong>Dum Dum Junction</strong>. Follow the underground
+
+                signage directly toward the Blue Line Metro platforms.
+
+              </p>
+
+              <div class="card-actions">
+
+                <a
+
+                  class="btn-action primary"
+
+                  href="https://www.google.com/maps/dir/?api=1&destination=Dum+Dum+Junction+Station"
+
+                  target="_blank"
+
+                >
+
+                  <i class="fa-solid fa-diamond-turn-right"></i> Dum Dum Maps
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="timeline-wrap">
+
+            <div class="timeline-bullet"></div>
+
+            <div class="item-card">
+
+              <h4 style="color: var(--gold-bright); font-size: 0.9rem">
+
+                2. Blue Line Metro &rarr; Kalighat Station
+
+              </h4>
+
+              <p>
+
+                Board southbound Blue Line train to
+
+                <strong>Kalighat Metro Station</strong>. Exit towards Rashbehari
+
+                Crossing / Chetla Lock Gate road.
+
+              </p>
+
+              <div class="card-actions">
+
+                <a
+
+                  class="btn-action primary"
+
+                  href="https://www.google.com/maps/dir/?api=1&destination=Kalighat+Metro+Station"
+
+                  target="_blank"
+
+                >
+
+                  <i class="fa-solid fa-diamond-turn-right"></i> Kalighat Metro
+
+                  Maps
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="timeline-wrap">
+
+            <div class="timeline-bullet"></div>
+
+            <div class="item-card">
+
+              <h4 style="color: var(--gold-bright); font-size: 0.9rem">
+
+                3. Chetla Auto Stand & Pandal Circuit
+
+              </h4>
+
+              <p>
+
+                Walk or take a shared auto from
+
+                <strong>Kalighat Metro Auto Stand</strong> over the canal into
+
+                Chetla. Start at Chetla Agrani and hop eastward towards
+
+                Gariahat.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="timeline-wrap">
+
+            <div class="timeline-bullet"></div>
+
+            <div class="item-card">
+
+              <h4 style="color: var(--gold-bright); font-size: 0.9rem">
+
+                4. Return via Ballygunge Jn &rarr; Sealdah
+
+              </h4>
+
+              <p>
+
+                Finish your last stop at <strong>Ballygunge 21 Pally</strong>.
+
+                Walk 15 mins to <strong>Ballygunge Jn Railway Station</strong>.
+
+                Board any Sealdah-bound local train (12–15 min run) and transfer
+
+                seamlessly to your northbound train home.
+
+              </p>
+
+              <div class="card-actions">
+
+                <a
+
+                  class="btn-action primary"
+
+                  href="https://www.google.com/maps/dir/?api=1&destination=Ballygunge+Junction+Railway+Station"
+
+                  target="_blank"
+
+                >
+
+                  <i class="fa-solid fa-diamond-turn-right"></i> Ballygunge Jn
+
+                  Maps
+
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <h3 class="section-title" style="margin-top: 20px">
+
+            <i class="fa-solid fa-taxi"></i>
+
+            <span>Auto Stands & Major Crossings</span>
+
+          </h3>
+
+          <div id="auto-items"></div>
+          <h3 class="section-title" style="margin-top:20px"><i class="fa-solid fa-train-subway"></i><span>Nearby Metro & Railway Stations</span></h3>
+          <div id="transit-items"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- STICKY BOTTOM NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+      <button class="nav-btn active" onclick="switchTab('map', this)">
+
+        <i class="fa-solid fa-map-location-dot"></i>
+
+        <span>Route Map</span>
+
+      </button>
+
+      <button class="nav-btn" onclick="switchTab('checklist', this)">
+
+        <i class="fa-solid fa-list-check"></i>
+
+        <span>Checklist</span>
+
+      </button>
+
+      <button class="nav-btn" onclick="switchTab('food', this)">
+
+        <i class="fa-solid fa-utensils"></i>
+
+        <span>Food Hubs</span>
+
+      </button>
+
+      <button class="nav-btn" onclick="switchTab('transit', this)">
+
+        <i class="fa-solid fa-compass"></i>
+
+        <span>Transit Guide</span>
+
+      </button>
+
+    </nav>
+
+
+
+    <!-- PLACE SEARCH MODAL -->
+    <div class="modal-overlay" id="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-title" onclick="if(event.target===this) closeSearchModal()">
+      <div class="modal-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;">
+          <h3 id="search-title" style="color:var(--gold-bright);font-size:1.05rem;margin:0;">Find a place</h3>
+          <button class="btn-action" type="button" onclick="closeSearchModal()" aria-label="Close search" style="padding:6px 10px;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <label for="place-search-input" style="display:block;color:var(--text-muted);font-size:.76rem;margin-bottom:6px;">Search pandals, food spots, and transit</label>
+        <input class="search-field" id="place-search-input" type="search" placeholder="Try Chetla Agrani Club..." autocomplete="off" />
+        <div class="search-results" id="place-search-results" aria-live="polite"></div>
+      </div>
+    </div>
+
+
+    <!-- Leaflet JS -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+
+    <script>
+
+      // 18 CURATED PANDALS (FARTHEST TO CLOSEST ROUTE)
+
+      const DEFAULT_PANDALS = [
+
+        {
+
+          id: "p1",
+
+          seq: 1,
+
+          name: "Chetla Agrani Club",
+
+          zone: "Chetla & Alipore",
+
+          lat: 22.5164,
+
+          lng: 88.3368,
+
+          desc: "Farthest starting point - Big crowd-puller & creative installation",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p2",
+
+          seq: 2,
+
+          name: "Chetla Sarbasadharaner Durgotsab",
+
+          zone: "Chetla & Alipore",
+
+          lat: 22.5178,
+
+          lng: 88.3382,
+
+          desc: "Traditional community neighborhood puja",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p3",
+
+          seq: 3,
+
+          name: "Alipore Sarbajanin",
+
+          zone: "Chetla & Alipore",
+
+          lat: 22.5225,
+
+          lng: 88.3371,
+
+          desc: "Scenic heritage puja near Alipore canal green",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p4",
+
+          seq: 4,
+
+          name: "Badamtala Ashar Sangha",
+
+          zone: "Kalighat",
+
+          lat: 22.518,
+
+          lng: 88.3437,
+
+          desc: "Nepal Bhattacharya Street - Artistic theme showcase",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p5",
+
+          seq: 5,
+
+          name: "66 Pally",
+
+          zone: "Kalighat",
+
+          lat: 22.5186,
+
+          lng: 88.3448,
+
+          desc: "Directly neighboring Badamtala with innovative themes",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p6",
+
+          seq: 6,
+
+          name: "Nepal Bhattacharya Street Club",
+
+          zone: "Kalighat",
+
+          lat: 22.5172,
+
+          lng: 88.3453,
+
+          desc: "Lively traditional lane puja in Kalighat",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p7",
+
+          seq: 7,
+
+          name: "Tricone Park",
+
+          zone: "Kalighat",
+
+          lat: 22.5195,
+
+          lng: 88.349,
+
+          desc: "Satyendranath Majumdar Sarani - Connected gateway",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p8",
+
+          seq: 8,
+
+          name: "Deshapriya Park",
+
+          zone: "Deshapriya & Lake",
+
+          lat: 22.5186,
+
+          lng: 88.3535,
+
+          desc: "Monumental scale field pandal with majestic decor",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p9",
+
+          seq: 9,
+
+          name: "Tridhara Sammilani",
+
+          zone: "Deshapriya & Lake",
+
+          lat: 22.5198,
+
+          lng: 88.3562,
+
+          desc: "Manoharpukur Road - Famous artistic visual installation",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p10",
+
+          seq: 10,
+
+          name: "Samaj Sebi Sangha",
+
+          zone: "Deshapriya & Lake",
+
+          lat: 22.517,
+
+          lng: 88.356,
+
+          desc: "Lake View Road - Thoughtful cultural & social themes",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p11",
+
+          seq: 11,
+
+          name: "Ballygunge Cultural Association",
+
+          zone: "Deshapriya & Lake",
+
+          lat: 22.5146,
+
+          lng: 88.3582,
+
+          desc: "Jatin Bagchi Road - Traditional idol elegance",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p12",
+
+          seq: 12,
+
+          name: "Hindustan Park",
+
+          zone: "Gariahat",
+
+          lat: 22.5179,
+
+          lng: 88.3615,
+
+          desc: "Ethnic handicraft and creative architectural aesthetics",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p13",
+
+          seq: 13,
+
+          name: "Hindustan Club",
+
+          zone: "Gariahat",
+
+          lat: 22.519,
+
+          lng: 88.3628,
+
+          desc: "Heritage traditional club puja on Sarat Bose corridor",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p14",
+
+          seq: 14,
+
+          name: "Singhi Park",
+
+          zone: "Gariahat",
+
+          lat: 22.5222,
+
+          lng: 88.3647,
+
+          desc: "Dover Lane - Splendid temple replication & lights",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p15",
+
+          seq: 15,
+
+          name: "Ekdalia Evergreen Club",
+
+          zone: "Gariahat",
+
+          lat: 22.5212,
+
+          lng: 88.3666,
+
+          desc: "Legendary classical pratima & Chandannagar illuminations",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p16",
+
+          seq: 16,
+
+          name: "Falguni Sangha",
+
+          zone: "Ballygunge",
+
+          lat: 22.5255,
+
+          lng: 88.3675,
+
+          desc: "Ballygunge Place link - Local cultural festivities",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p17",
+
+          seq: 17,
+
+          name: "Adi Ballygunge Sarbajanin",
+
+          zone: "Ballygunge",
+
+          lat: 22.527,
+
+          lng: 88.369,
+
+          desc: "Historic neighborhood puja near Bondel Road",
+
+          category: "pandal",
+
+        },
+
+        {
+
+          id: "p18",
+
+          seq: 18,
+
+          name: "Ballygunge 21 Pally",
+
+          zone: "Ballygunge",
+
+          lat: 22.5292,
+
+          lng: 88.3688,
+
+          desc: "Final Pandal! Only 15 mins walk to Ballygunge Jn Station",
+
+          category: "pandal",
+
+        },
+
+      ];
+
+
+
+      // FAMOUS FOOD STOPS ALONG EXACT PATH
+
+      const FOOD_SPOTS = [
+
+        {
+
+          id: "f1",
+
+          name: "Maharani Tea & Tiffin",
+
+          lat: 22.5174,
+
+          lng: 88.3512,
+
+          category: "food",
+
+          desc: "Famous Hing Kochuri, Cholar Dal, Jilipi & Hot Chai",
+
+          specialty: "Hing Kochuri",
+
+        },
+
+        {
+
+          id: "f2",
+
+          name: "Maharaj Snacks",
+
+          lat: 22.5177,
+
+          lng: 88.3514,
+
+          category: "food",
+
+          desc: "Legendary breakfast & evening Kochuri adda near Sarat Bose crossing",
+
+          specialty: "Kachori & Jalebi",
+
+        },
+
+        {
+
+          id: "f3",
+
+          name: "Campari Kolkata",
+
+          lat: 22.5191,
+
+          lng: 88.3625,
+
+          category: "food",
+
+          desc: "Heritage Kolkata snack corner: Famous Fish Roll, Chicken Cutlet",
+
+          specialty: "Fish Fry & Rolls",
+
+        },
+
+        {
+
+          id: "f4",
+
+          name: "Bedwin & Bedouin (Gariahat)",
+
+          lat: 22.5186,
+
+          lng: 88.3653,
+
+          category: "food",
+
+          desc: "Iconic Bengali Kathi Rolls, Biryani & Mughlai treats",
+
+          specialty: "Egg Chicken Roll",
+
+        },
+
+        {
+
+          id: "f5",
+
+          name: "Bhojohori Manna (Ekdalia)",
+
+          lat: 22.521,
+
+          lng: 88.3659,
+
+          category: "food",
+
+          desc: "Authentic Bengali thali, Kosha Mangsho, Ilish & Daab Chingri",
+
+          specialty: "Bengali Feast",
+
+        },
+
+        {
+
+          id: "f6",
+
+          name: "Kalika Mukhorochak Telebhaja",
+
+          lat: 22.5196,
+
+          lng: 88.344,
+
+          category: "food",
+
+          desc: "Crispy Alur Chop, Beguni, Mochar Chop & Bengali evening fried delicacies",
+
+          specialty: "Telebhaja",
+
+        },
+
+      ];
+
+
+
+      // STRATEGIC TRANSIT HUBS
+
+      const TRANSIT_HUBS = [
+
+        {
+
+          id: "t1",
+
+          name: "Kalighat Metro Station",
+
+          lat: 22.5167,
+
+          lng: 88.346,
+
+          category: "transit",
+
+          desc: "Blue Line entry point from Dum Dum Jn - Start walk to Chetla here",
+
+        },
+
+        {
+
+          id: "t2",
+
+          name: "Ballygunge Jn Railway Station",
+
+          lat: 22.5194,
+
+          lng: 88.3721,
+
+          category: "transit",
+
+          desc: "Final return hub! Board local train directly to Sealdah",
+
+        },
+
+        {
+
+          id: "t3",
+
+          name: "Dum Dum Junction",
+
+          lat: 22.6219,
+
+          lng: 88.3932,
+
+          category: "transit",
+
+          desc: "Inbound suburban train junction - Switch onto Blue Line Metro",
+
+        },
+
+        {
+
+          id: "t4",
+
+          name: "Sealdah Railway Station",
+
+          lat: 22.5697,
+
+          lng: 88.3697,
+
+          category: "transit",
+
+          desc: "Return connection hub back to Barrackpore/Main line home",
+
+        },
+
+      ];
+
+
+
+      // CRITICAL AUTO STANDS & ROAD CROSSINGS
+
+      const AUTO_STANDS = [
+
+        {
+
+          id: "a1",
+
+          name: "Kalighat Metro Auto Stand",
+
+          lat: 22.5169,
+
+          lng: 88.3465,
+
+          category: "auto",
+
+          desc: "Direct shared autos to Chetla Central & Tollygunge",
+
+        },
+
+        {
+
+          id: "a2",
+
+          name: "Deshapriya Park Crossing",
+
+          lat: 22.5185,
+
+          lng: 88.353,
+
+          category: "auto",
+
+          desc: "Major hub: Rashbehari & Sarat Bose Road crossing",
+
+        },
+
+        {
+
+          id: "a3",
+
+          name: "Gariahat More Crossing & Auto Point",
+
+          lat: 22.5198,
+
+          lng: 88.3649,
+
+          category: "auto",
+
+          desc: "Routes to Golpark, Jadavpur 8B, and Ballygunge Phari",
+
+        },
+
+        {
+
+          id: "a4",
+
+          name: "Ballygunge Phari Crossing",
+
+          lat: 22.5296,
+
+          lng: 88.3668,
+
+          category: "auto",
+
+          desc: "Connecting autos to Sealdah, Park Circus & Ruby Bypass",
+
+        },
+
+      ];
+
+
+
+
+      // Additional food-search areas. These are area pins, not individually verified shop listings.
+      const ADDITIONAL_FOOD_SPOTS = [
+        {id:"f7",name:"Chetla Local Food & Roll Shops",lat:22.5161,lng:88.3377,category:"food",foodType:"Street food & rolls",desc:"Look for local roll counters, momo stalls, tea shops and quick Bengali snacks around the Chetla lanes.",specialty:"Rolls, momos & chai"},
+        {id:"f8",name:"Kalighat Street Food Lane",lat:22.5173,lng:88.3458,category:"food",foodType:"Street food",desc:"A search area for phuchka, ghugni, telebhaja, rolls and small local eateries near the Kalighat corridor.",specialty:"Phuchka & telebhaja"},
+        {id:"f9",name:"Rashbehari Avenue Quick Bites",lat:22.5180,lng:88.3508,category:"food",foodType:"Snack shops",desc:"Explore nearby snack counters, bakery shops, tea stalls and budget takeaway options.",specialty:"Tea, snacks & bakery"},
+        {id:"f10",name:"Deshapriya Park Food Stalls Area",lat:22.5189,lng:88.3541,category:"food",foodType:"Puja-season stalls",desc:"Seasonal food-stall search area. Availability and stall locations can change during Puja.",specialty:"Puja snacks"},
+        {id:"f11",name:"Lake View Road Local Restaurants",lat:22.5175,lng:88.3574,category:"food",foodType:"Restaurants & dhaba-style meals",desc:"Search nearby local restaurants for rice meals, curry, paratha and casual sit-down food.",specialty:"Rice meals & curry"},
+        {id:"f12",name:"Hindustan Park Café & Snack Area",lat:22.5177,lng:88.3607,category:"food",foodType:"Cafés & quick service",desc:"A general search area for cafés, snack shops and casual dining around Hindustan Park.",specialty:"Café food & snacks"},
+        {id:"f13",name:"Gariahat Market Street Food",lat:22.5198,lng:88.3639,category:"food",foodType:"Market food & street snacks",desc:"Look around the market approaches for street snacks, sweets, tea and quick takeaway counters.",specialty:"Street snacks & sweets"},
+        {id:"f14",name:"Gariahat Budget Meal & Dhaba Search",lat:22.5208,lng:88.3652,category:"food",foodType:"Budget restaurant / dhaba-style",desc:"Area-level search for casual restaurants serving thali, paratha, curry and filling budget meals. Check listings before travelling.",specialty:"Thali & paratha"},
+        {id:"f15",name:"Ekdalia Restaurant Area",lat:22.5216,lng:88.3669,category:"food",foodType:"Bengali restaurants",desc:"Search nearby Bengali eateries and family restaurants for thali, fish curry and home-style meals.",specialty:"Bengali meals"},
+        {id:"f16",name:"Ballygunge Place Tea & Tiffin",lat:22.5242,lng:88.3677,category:"food",foodType:"Tea stalls & tiffin shops",desc:"Local search area for breakfast, evening tea, light meals and takeaway snacks.",specialty:"Tiffin & chai"},
+        {id:"f17",name:"Ballygunge Phari Restaurant Hub",lat:22.5282,lng:88.3683,category:"food",foodType:"Restaurants & quick meals",desc:"Explore the nearby main-road area for restaurants, fast food, biryani, rolls and casual dining.",specialty:"Biryani & rolls"},
+        {id:"f18",name:"Chetla Budget Meal & Dhaba Search",lat:22.5155,lng:88.3398,category:"food",foodType:"Budget meals / dhaba-style",desc:"Area-level search for local meal shops and casual eateries; verify the exact business, menu and opening hours.",specialty:"Paratha & rice meals"}
+      ];
+
+      // Important nearby metro and suburban rail stations. Confirm service/entry details before travel.
+      const EXTRA_TRANSIT_HUBS = [
+        {id:"t5",name:"Jatin Das Park Metro Station",lat:22.5186,lng:88.3422,category:"transit",transitType:"Metro • Blue Line",desc:"Nearby Blue Line station serving the Kalighat and south Kolkata area."},
+        {id:"t6",name:"Rabindra Sarobar Metro Station",lat:22.5078,lng:88.3452,category:"transit",transitType:"Metro • Blue Line",desc:"Southern Blue Line interchange area near Tollygunge and Lake Gardens."},
+        {id:"t7",name:"Netaji Bhavan Metro Station",lat:22.5395,lng:88.3432,category:"transit",transitType:"Metro • Blue Line",desc:"Blue Line station north of Kalighat; useful for connecting toward central Kolkata."},
+        {id:"t8",name:"Maidan Metro Station",lat:22.5448,lng:88.3505,category:"transit",transitType:"Metro • Blue Line",desc:"Central Kolkata Blue Line station; check the best exit and onward route."},
+        {id:"t9",name:"Tollygunge Railway Station",lat:22.5075,lng:88.3481,category:"transit",transitType:"Suburban rail",desc:"Suburban rail access in the Tollygunge area; confirm your train and platform."},
+        {id:"t10",name:"Lake Gardens Railway Station",lat:22.5070,lng:88.3554,category:"transit",transitType:"Suburban rail",desc:"Rail station south-west of the main pandal circuit."},
+        {id:"t11",name:"Dhakuria Railway Station",lat:22.5077,lng:88.3691,category:"transit",transitType:"Suburban rail",desc:"South Kolkata suburban station near the Gariahat/Ballygunge area."},
+        {id:"t12",name:"Park Circus Railway Station",lat:22.5455,lng:88.3654,category:"transit",transitType:"Suburban rail",desc:"Rail connection north-east of the pandal route; check route and service timings."},
+        {id:"t13",name:"Majerhat Railway Station",lat:22.5096,lng:88.3237,category:"transit",transitType:"Suburban rail",desc:"Rail hub west of Chetla/Alipore; useful depending on your approach route."},
+        {id:"t14",name:"Rabindra Sadan Metro Station",lat:22.5397,lng:88.3458,category:"transit",transitType:"Metro • Blue Line",desc:"Blue Line station north of the core circuit, with onward city connections."}
+      ];
+
+      // Approximate corridor overlays for orientation, not turn-by-turn railway geometry.
+      const TRANSIT_LINES = [
+        {id:"metro-blue",name:"Metro Blue Line (indicative)",kind:"metro",coords:[[22.5078,88.3452],[22.5167,88.3460],[22.5186,88.3422],[22.5395,88.3432],[22.5397,88.3458],[22.5448,88.3505]]},
+        {id:"rail-south",name:"Suburban rail corridor (indicative)",kind:"rail",coords:[[22.5075,88.3481],[22.5070,88.3554],[22.5077,88.3691],[22.5194,88.3721]]},
+        {id:"rail-east",name:"Rail connection toward Sealdah (indicative)",kind:"rail",coords:[[22.5194,88.3721],[22.5455,88.3654],[22.5697,88.3697]]}
+      ];
+
+      let pandals = [];
+
+      let visitedMap = {};
+
+      let customSpots = [];
+
+      let map = null;
+
+      let markersLayer = null;
+
+      let routePolyline = null;
+      let transitLineLayer = null;
+
+      let currentMapFilter = "all";
+
+      let currentTileMode = "esri";
+
+      let currentTileLayer = null;
+
+      let userLocationMarker = null;
+
+
+
+      function loadState() {
+
+        try {
+
+          const v = localStorage.getItem("puja_visited_2026");
+
+          if (v) visitedMap = JSON.parse(v);
+
+
+
+          const c = localStorage.getItem("puja_custom_spots_2026");
+
+          if (c) customSpots = JSON.parse(c);
+
+        } catch (e) {
+
+          console.error(e);
+
+        }
+
+        pandals = [...DEFAULT_PANDALS];
+
+      }
+
+
+
+      function saveState() {
+
+        try {
+
+          localStorage.setItem("puja_visited_2026", JSON.stringify(visitedMap));
+
+          localStorage.setItem(
+
+            "puja_custom_spots_2026",
+
+            JSON.stringify(customSpots),
+
+          );
+
+        } catch (e) {
+
+          console.error(e);
+
+        }
+
+      }
+
+
+
+      function initMap() {
+
+        loadState();
+
+
+
+        // STRICT ZOOM LIMITS PREVENT TILE BLANKING / OVER-ZOOM ERRORS
+
+        map = L.map("map", {
+
+          center: [22.52, 88.354],
+
+          zoom: 14,
+
+          minZoom: 11,
+
+          maxZoom: 18,
+
+          maxNativeZoom: 18,
+
+          zoomControl: false,
+
+        });
+
+
+
+        L.control.zoom({ position: "bottomright" }).addTo(map);
+
+
+
+        // Primary Esri Street Tiles (100% Free, NO API KEY, NO WATERMARK)
+
+        setTileLayer("esri");
+
+
+
+        markersLayer = L.layerGroup().addTo(map);
+        transitLineLayer = L.layerGroup().addTo(map);
+        TRANSIT_LINES.forEach((line) => {
+          const isMetro = line.kind === "metro";
+          const polyline = L.polyline(line.coords, {
+            color: isMetro ? "#2563eb" : "#7c3aed",
+            weight: isMetro ? 5 : 4,
+            opacity: 0.78,
+            dashArray: isMetro ? null : "7 7",
+            lineCap: "round",
+            lineJoin: "round"
+          });
+          polyline.bindTooltip(line.name, {
+            permanent: false,
+            sticky: true,
+            className: `map-line-label ${isMetro ? "metro-line-label" : "rail-line-label"}`
+          });
+          polyline.addTo(transitLineLayer);
+        });
+        updatePandalLabelVisibility();
+        map.on("zoomend", updatePandalLabelVisibility);
+
+        renderAllMarkers();
+
+        renderChecklist();
+
+        renderFood();
+
+        renderAutoStands();
+
+        updateHeaderStats();
+
+      }
+
+
+
+      function setTileLayer(mode) {
+
+        if (currentTileLayer) {
+
+          map.removeLayer(currentTileLayer);
+
+        }
+
+
+
+        if (mode === "esri") {
+
+          // High-contrast clean OpenStreetMap
+
+          currentTileLayer = L.tileLayer(
+
+            "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+
+            {
+
+              attribution: "&copy; OpenStreetMap contributors",
+
+              maxNativeZoom: 18,
+
+              maxZoom: 18,
+
+            },
+
+          );
+
+        } else {
+
+          currentTileLayer = L.tileLayer(
+
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+
+            {
+
+              attribution: "Tiles &copy; Esri",
+
+              maxNativeZoom: 18,
+
+              maxZoom: 18,
+
+            },
+
+          );
+
+        }
+
+
+
+        currentTileLayer.addTo(map);
+
+        currentTileMode = mode;
+
+      }
+
+
+
+      function toggleMapTiles() {
+
+        setTileLayer(currentTileMode === "esri" ? "osm" : "esri");
+
+      }
+
+
+
+      function getAllActiveSpots() {
+
+        return [
+
+          ...pandals,
+
+          ...FOOD_SPOTS,
+
+          ...TRANSIT_HUBS,
+
+          ...AUTO_STANDS,
+
+          ...customSpots,
+
+        ];
+
+      }
+
+
+
+      function renderAllMarkers() {
+
+        markersLayer.clearLayers();
+
+        if (routePolyline) map.removeLayer(routePolyline);
+
+
+
+        const all = getAllActiveSpots();
+
+        const pandalCoords = [];
+
+
+
+        all.forEach((item, idx) => {
+
+          if (
+
+            currentMapFilter !== "all" &&
+
+            item.category !== currentMapFilter
+
+          ) {
+
+            return;
+
+          }
+
+
+
+          const isVisited = !!visitedMap[item.id];
+
+          let markerHtml = "";
+
+          let iconClass = "";
+
+
+
+          if (item.category === "pandal") {
+
+            pandalCoords.push([item.lat, item.lng]);
+
+            markerHtml = `<div class="marker-pandal ${isVisited ? "visited" : ""}">${isVisited ? "✓" : item.seq || idx + 1}</div>`;
+
+            iconClass = "pandal-wrapper";
+
+          } else if (item.category === "food") {
+
+            markerHtml = `<div class="marker-food"><i class="fa-solid fa-utensils"></i></div>`;
+
+            iconClass = "food-wrapper";
+
+          } else if (item.category === "transit") {
+
+            markerHtml = `<div class="marker-transit"><i class="fa-solid fa-train"></i></div>`;
+
+            iconClass = "transit-wrapper";
+
+          } else if (item.category === "auto") {
+
+            markerHtml = `<div class="marker-auto"><i class="fa-solid fa-taxi"></i></div>`;
+
+            iconClass = "auto-wrapper";
+
+          }
+
+
+
+          const customIcon = L.divIcon({
+
+            className: iconClass,
+
+            html: markerHtml,
+
+            iconSize: [28, 28],
+
+            iconAnchor: [14, 14],
+
+          });
+
+
+
+          const gmapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}`;
+
+
+
+          const marker = L.marker([item.lat, item.lng], { icon: customIcon });
+
+          marker.bindPopup(`
+
+          <div style="font-family:'Plus Jakarta Sans',sans-serif; min-width:200px; padding:2px;">
+
+            <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+
+              <span style="font-size:10px; font-weight:700; text-transform:uppercase; padding:2px 6px; border-radius:4px; background:#f59e0b; color:#1f1305;">
+
+                ${item.category.toUpperCase()} ${item.seq ? "#" + item.seq : ""}
+
+              </span>
+
+            </div>
+
+            <strong style="font-size:14px; color:#111827; display:block; line-height:1.2;">${item.name}</strong>
+
+            <p style="font-size:11px; margin:5px 0; color:#4b5563; line-height:1.35;">${item.desc || ""}</p>
+
+            ${item.specialty ? `<p style="font-size:11px; color:#b45309; font-weight:600; margin-bottom:6px;">⭐ Specialty: ${item.specialty}</p>` : ""}
+
+
+
+            <div style="display:flex; gap:6px; margin-top:8px;">
+
+              ${
+
+                item.category === "pandal"
+
+                  ? `
+
+                <button onclick="toggleVisited('${item.id}')" style="flex:1; background:${isVisited ? "#4b5563" : "#10b981"}; color:#fff; border:none; padding:6px 8px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">
+
+                  ${isVisited ? "Uncheck" : "✓ Mark Visited"}
+
+                </button>
+
+              `
+
+                  : ""
+
+              }
+
+              <a href="${gmapsUrl}" target="_blank" style="flex:1; background:#881337; color:#fff; text-decoration:none; padding:6px 8px; border-radius:6px; font-size:11px; font-weight:600; text-align:center; display:inline-flex; align-items:center; justify-content:center; gap:4px;">
+
+                <i class="fa-solid fa-diamond-turn-right"></i> Maps
+
+              </a>
+
+            </div>
+
+          </div>
+
+        `);
+
+
+
+          const labelCategory = ["pandal","food","transit","auto","landmark"].includes(item.category) ? item.category : "landmark";
+          marker.bindTooltip(item.name, {
+            permanent: true,
+            direction: "top",
+            offset: [0, -12],
+            className: `map-name-label label-${labelCategory}`,
+            opacity: 1,
+          });
+
+          markersLayer.addLayer(marker);
+
+        });
+
+
+
+        // Sequential Connecting Polyline for Pandals
+
+        if (
+
+          (currentMapFilter === "all" || currentMapFilter === "pandal") &&
+
+          pandalCoords.length > 1
+
+        ) {
+
+          routePolyline = L.polyline(pandalCoords, {
+
+            color: "#f59e0b",
+
+            weight: 4,
+
+            opacity: 0.88,
+
+            dashArray: "6, 8",
+
+            lineCap: "round",
+
+            lineJoin: "round",
+
+          }).addTo(map);
+
+        }
+
+      }
+
+
+
+      function updatePandalLabelVisibility() {
+        if (!map) return;
+        // Labels stay hidden at overview zoom and appear when zoomed in.
+        const showLabels = map.getZoom() >= 17;
+        const mapElement = document.getElementById("map");
+        if (mapElement) mapElement.classList.toggle("map-labels-visible", showLabels);
+      }
+
+      function openSearchModal() {
+        const modal = document.getElementById("search-modal");
+        modal.classList.add("open");
+        renderSearchResults("");
+        setTimeout(() => document.getElementById("place-search-input").focus(), 80);
+      }
+
+      function closeSearchModal() {
+        document.getElementById("search-modal").classList.remove("open");
+      }
+
+      function renderSearchResults(query) {
+        const host = document.getElementById("place-search-results");
+        if (!host) return;
+        const term = String(query || "").trim().toLowerCase();
+        const matches = getAllActiveSpots().filter((spot) =>
+          !term || `${spot.name} ${spot.zone || ""} ${spot.category || ""} ${spot.desc || ""}`.toLowerCase().includes(term)
+        ).slice(0, 40);
+        if (!matches.length) {
+          host.innerHTML = '<p style="color:var(--text-muted);font-size:.82rem;padding:8px 2px;">No places found. Try another name or area.</p>';
+          return;
+        }
+        host.innerHTML = matches.map((spot) => {
+          const number = spot.category === "pandal" ? (spot.seq || "•") : (spot.category === "food" ? '<i class="fa-solid fa-utensils"></i>' : spot.category === "transit" ? '<i class="fa-solid fa-train"></i>' : '<i class="fa-solid fa-taxi"></i>');
+          const category = ({pandal:"Pandal",food:"Food spot",transit:"Transit",auto:"Auto stand"})[spot.category] || "Place";
+          return `<button class="search-result" type="button" data-spot-id="${String(spot.id).replace(/[^a-zA-Z0-9_-]/g, "")}"><span class="search-result-number">${number}</span><span><strong style="font-size:.82rem;line-height:1.25;">${escapeSearchText(spot.name)}</strong><small>${category}${spot.zone ? " · " + escapeSearchText(spot.zone) : ""}</small></span></button>`;
+        }).join("");
+      }
+
+      function escapeSearchText(value) {
+        return String(value || "").replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+      }
+
+      function selectSearchResult(spotId) {
+        const spot = getAllActiveSpots().find((item) => item.id === spotId);
+        if (!spot) return;
+        closeSearchModal();
+        currentMapFilter = "all";
+        document.querySelectorAll(".map-chip").forEach((chip) => chip.classList.toggle("active", chip.textContent.toLowerCase().includes("all spots")));
+        renderAllMarkers();
+        switchTab("map", document.querySelectorAll(".nav-btn")[0]);
+        map.setView([spot.lat, spot.lng], 17, { animate: true });
+        setTimeout(() => {
+          markersLayer.eachLayer((marker) => {
+            const point = marker.getLatLng();
+            if (Math.abs(point.lat - spot.lat) < 0.000001 && Math.abs(point.lng - spot.lng) < 0.000001) marker.openPopup();
+          });
+        }, 250);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const input = document.getElementById("place-search-input");
+        const results = document.getElementById("place-search-results");
+        if (input) input.addEventListener("input", () => renderSearchResults(input.value));
+        if (results) results.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-spot-id]");
+          if (button) selectSearchResult(button.dataset.spotId);
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") closeSearchModal();
+        });
+      });
+
+      function renderChecklist() {
+
+        const el = document.getElementById("checklist-items");
+
+        if (!el) return;
+
+        el.innerHTML = "";
+
+
+
+        pandals.forEach((p, idx) => {
+
+          const isVisited = !!visitedMap[p.id];
+
+          const gmapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`;
+
+
+
+          const card = document.createElement("div");
+
+          card.className = `item-card ${isVisited ? "visited" : ""}`;
+
+          card.innerHTML = `
+
+          <div class="card-top">
+
+            <div class="badge-icon" style="background:${isVisited ? "var(--accent-emerald)" : "var(--maroon-primary)"}; color:#fff;">
+
+              ${isVisited ? "✓" : p.seq || idx + 1}
+
+            </div>
+
+            <div class="card-details">
+
+              <h3>${p.name}</h3>
+
+              <p>${p.desc}</p>
+
+              <div class="card-meta">
+
+                <span class="meta-tag" style="background:rgba(245, 158, 11, 0.15); color:var(--gold-bright);">
+
+                  <i class="fa-solid fa-location-dot"></i> ${p.zone}
+
+                </span>
+
+                <span style="color:var(--text-muted);">Stop #${p.seq || idx + 1}</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <label style="display:flex; align-items:center; gap:6px; font-size:0.8rem; cursor:pointer;">
+
+              <input type="checkbox" ${isVisited ? "checked" : ""} onchange="toggleVisited('${p.id}')" style="width:17px; height:17px; accent-color:var(--accent-emerald);">
+
+              <span>${isVisited ? "Visited" : "Mark Visited"}</span>
+
+            </label>
+
+            <div style="display:flex; gap:6px;">
+
+              <button class="btn-action" onclick="focusSpot(${p.lat}, ${p.lng})">
+
+                <i class="fa-solid fa-map-pin"></i> View
+
+              </button>
+
+              <a class="btn-action primary" href="${gmapsUrl}" target="_blank">
+
+                <i class="fa-solid fa-diamond-turn-right"></i> Maps
+
+              </a>
+
+            </div>
+
+          </div>
+
+        `;
+
+          el.appendChild(card);
+
+        });
+
+      }
+
+
+
+      function renderFood() {
+
+        const el = document.getElementById("food-items");
+
+        if (!el) return;
+
+        el.innerHTML = "";
+
+
+
+        [...FOOD_SPOTS, ...ADDITIONAL_FOOD_SPOTS].forEach((f) => {
+
+          const gmapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${f.lat},${f.lng}`;
+
+          const card = document.createElement("div");
+
+          card.className = "item-card";
+
+          card.innerHTML = `
+
+          <div class="card-top">
+
+            <div class="badge-icon" style="background:linear-gradient(135deg, #d97706, #b45309); color:#fff;">
+
+              <i class="fa-solid fa-utensils"></i>
+
+            </div>
+
+            <div class="card-details">
+
+              <h3>${f.name}</h3>
+
+              <p>${f.desc}</p>
+
+              <div class="card-meta">
+
+                <span class="meta-tag" style="background:rgba(217, 119, 6, 0.2); color:#fbbf24;">
+                  ${f.foodType || "Food stop"} · ⭐ ${f.specialty}
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button class="btn-action" onclick="focusSpot(${f.lat}, ${f.lng})">
+
+              <i class="fa-solid fa-map-pin"></i> Map
+
+            </button>
+
+            <a class="btn-action primary" href="${gmapsUrl}" target="_blank">
+
+              <i class="fa-solid fa-diamond-turn-right"></i> Navigate
+
+            </a>
+
+          </div>
+
+        `;
+
+          el.appendChild(card);
+
+        });
+
+      }
+
+
+
+      function renderTransitStations() {
+        const el = document.getElementById("transit-items");
+        if (!el) return;
+        el.innerHTML = "";
+        [...TRANSIT_HUBS, ...EXTRA_TRANSIT_HUBS].forEach((station) => {
+          const url = `https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lng}`;
+          const card = document.createElement("div");
+          card.className = "item-card";
+          card.innerHTML = `
+            <div class="card-top">
+              <div class="badge-icon" style="background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff"><i class="fa-solid fa-train-subway"></i></div>
+              <div class="card-details">
+                <h3>${station.name}</h3>
+                <p>${station.desc}</p>
+                <div class="card-meta"><span class="meta-tag" style="background:rgba(2,132,199,.18);color:#7dd3fc">${station.transitType || "Metro / railway connection"}</span></div>
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn-action" onclick="focusSpot(${station.lat},${station.lng})"><i class="fa-solid fa-map-pin"></i> View on map</button>
+              <a class="btn-action primary" href="${url}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-diamond-turn-right"></i> Navigate</a>
+            </div>`;
+          el.appendChild(card);
+        });
+      }
+
+      function renderAutoStands() {
+
+        const el = document.getElementById("auto-items");
+
+        if (!el) return;
+
+        el.innerHTML = "";
+
+
+
+        AUTO_STANDS.forEach((a) => {
+
+          const gmapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${a.lat},${a.lng}`;
+
+          const card = document.createElement("div");
+
+          card.className = "item-card";
+
+          card.innerHTML = `
+
+          <div class="card-top">
+
+            <div class="badge-icon" style="background:linear-gradient(135deg, #059669, #047857); color:#fff;">
+
+              <i class="fa-solid fa-taxi"></i>
+
+            </div>
+
+            <div class="card-details">
+
+              <h3>${a.name}</h3>
+
+              <p>${a.desc}</p>
+
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button class="btn-action" onclick="focusSpot(${a.lat}, ${a.lng})">
+
+              <i class="fa-solid fa-map-pin"></i> Pin
+
+            </button>
+
+            <a class="btn-action primary" href="${gmapsUrl}" target="_blank">
+
+              <i class="fa-solid fa-diamond-turn-right"></i> Navigate
+
+            </a>
+
+          </div>
+
+        `;
+
+          el.appendChild(card);
+
+        });
+
+      }
+
+
+
+      function toggleVisited(id) {
+
+        visitedMap[id] = !visitedMap[id];
+
+        saveState();
+
+        renderAllMarkers();
+
+        renderChecklist();
+
+        updateHeaderStats();
+
+      }
+
+
+
+      function updateHeaderStats() {
+
+        const total = pandals.length;
+
+        const visited = pandals.filter((p) => !!visitedMap[p.id]).length;
+
+        const pct = Math.round((visited / total) * 100);
+
+
+
+        document.getElementById("header-counter").textContent =
+
+          `${visited} / ${total}`;
+
+        document.getElementById("header-pct").textContent = `${pct}% Visited`;
+
+      }
+
+
+
+      function switchTab(tabKey, btn) {
+
+        document
+
+          .querySelectorAll(".view-page")
+
+          .forEach((p) => p.classList.remove("active"));
+
+        document
+
+          .querySelectorAll(".nav-btn")
+
+          .forEach((b) => b.classList.remove("active"));
+
+
+
+        document.getElementById(`page-${tabKey}`).classList.add("active");
+
+        btn.classList.add("active");
+
+
+
+        if (tabKey === "map" && map) {
+
+          setTimeout(() => map.invalidateSize(), 150);
+
+        }
+
+      }
+
+
+
+      function setMapFilter(cat, btn) {
+
+        currentMapFilter = cat;
+
+        document
+
+          .querySelectorAll(".map-chip")
+
+          .forEach((c) => c.classList.remove("active"));
+
+        btn.classList.add("active");
+
+        renderAllMarkers();
+
+      }
+
+
+
+      function focusSpot(lat, lng) {
+
+        switchTab("map", document.querySelectorAll(".nav-btn")[0]);
+
+        map.setView([lat, lng], 17);
+
+      }
+
+
+
+      function fitRoute() {
+
+        const coords = pandals.map((p) => [p.lat, p.lng]);
+
+        map.fitBounds(L.latLngBounds(coords), { padding: [40, 40] });
+
+      }
+
+
+
+      function locateUser() {
+
+        if (!navigator.geolocation) {
+
+          alert("Geolocation is not supported by your phone browser");
+
+          return;
+
+        }
+
+        navigator.geolocation.getCurrentPosition(
+
+          (pos) => {
+
+            const lat = pos.coords.latitude;
+
+            const lng = pos.coords.longitude;
+
+
+
+            if (!userLocationMarker) {
+
+              userLocationMarker = L.circleMarker([lat, lng], {
+
+                radius: 9,
+
+                fillColor: "#06b6d4",
+
+                color: "#ffffff",
+
+                weight: 3,
+
+                fillOpacity: 1,
+
+              }).addTo(map);
+
+            } else {
+
+              userLocationMarker.setLatLng([lat, lng]);
+
+            }
+
+            map.setView([lat, lng], 16);
+
+          },
+
+          () =>
+
+            alert(
+
+              "Could not get GPS location. Please turn on location services on your device.",
+
+            ),
+
+        );
+
+      }
+
+
+
+      window.onload = initMap;
+
+    </script>
+
+  
+    <script>
+      // PWA installation: Chromium browsers expose the install prompt event.
+      let deferredInstallPrompt = null;
+      const installButton = document.getElementById("install-app");
+      const isIosDevice = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isStandalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+      if (installButton && !isStandalone) {
+        if (isIosDevice) {
+          installButton.hidden = false;
+          installButton.addEventListener("click", () => alert("To install: tap the Share button in Safari, then choose Add to Home Screen."));
+        } else {
+          window.addEventListener("beforeinstallprompt", (event) => {
+            event.preventDefault();
+            deferredInstallPrompt = event;
+            installButton.hidden = false;
+          });
+          installButton.addEventListener("click", async () => {
+            if (!deferredInstallPrompt) {
+              alert("If Install is not available yet, open the browser menu and choose Install app or Add to Home screen.");
+              return;
+            }
+            deferredInstallPrompt.prompt();
+            await deferredInstallPrompt.userChoice;
+            deferredInstallPrompt = null;
+            installButton.hidden = true;
+          });
+          window.addEventListener("appinstalled", () => {
+            installButton.hidden = true;
+            deferredInstallPrompt = null;
+          });
+        }
+      }
+
+      // Register service worker using a relative path so the GitHub Pages project path is respected.
+      if ("serviceWorker" in navigator && location.protocol === "https:") {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js")
+            .catch((error) => console.error("Service worker registration failed:", error));
+        });
+      }
+    </script>
+
+  </body>
+
+</html>
